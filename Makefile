@@ -1,9 +1,9 @@
 
 .PHONY: help
 
-TAG	  ?= 0.0.1
-HUB   ?= quay.io/3scale
-IMAGE ?= quay.io/3scale/soyuz
+TAG	?= 0.0.1
+HUB	?= quay.io/3scale
+IMAGE	?= quay.io/3scale/soyuz
 
 help:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null \
