@@ -1,10 +1,17 @@
-version: 2
+version: 2.1
+
+workflows:
+  build-and-push:
+    jobs:
+       - build-n-push:
+           context: org-global
 jobs:
- build:
+ build-n-push:
    machine: true
    steps:
      - checkout
      - run: make build
-     - run: make push
      - run: make build-latest
+     - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+     - run: make push
      - run: make push-latest
