@@ -11,7 +11,7 @@ help:
 		| egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | sort
 
 build:
-	docker build -t $(IMAGE):$(TAG) -f Dockerfile ctx
+	docker build -t $(IMAGE):$(TAG) -f Dockerfile ./ctx
 
 push:
 	docker push $(IMAGE):$(TAG)
