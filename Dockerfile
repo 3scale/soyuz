@@ -1,4 +1,4 @@
-FROM alpine:3.1
+FROM alpine:3.7
 
 ENV AWSCLI_VERSION 1.18.4
 
@@ -6,6 +6,7 @@ RUN apk add --update \
   git openssh-client \
   make build-base bash \
   mysql-client \
+  busybox-extras \
   ruby python python-dev py-pip \
   && pip install awscli==$AWSCLI_VERSION --upgrade \
   && apk --purge -v del py-pip \

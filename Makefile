@@ -1,7 +1,7 @@
 
 .PHONY: help
 
-TAG	?= 0.0.1
+TAG	?= 0.0.2
 HUB	?= quay.io/3scale
 IMAGE	?= quay.io/3scale/soyuz
 
