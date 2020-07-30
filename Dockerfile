@@ -7,6 +7,7 @@ RUN apk add --update \
   make build-base bash \
   mysql-client \
   busybox-extras \
+  go \
   ruby python python-dev py-pip \
   && pip install --upgrade pip \
   && pip install awscli==$AWSCLI_VERSION --upgrade \
