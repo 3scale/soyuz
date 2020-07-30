@@ -13,6 +13,8 @@ RUN apk add --update \
   && rm -rf /var/cache/apk/* \
   && rm -rf $HOME/.cache
 
+RUN go get -u github.com/raelga/liche
+
 ENV BIN_3SCALE /opt/3scale/bin
 
 ENV PATH "$BIN_3SCALE:$PATH"
