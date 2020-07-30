@@ -8,6 +8,7 @@ RUN apk add --update \
   mysql-client \
   busybox-extras \
   ruby python python-dev py-pip \
+  && pip install --upgrade pip \
   && pip install awscli==$AWSCLI_VERSION --upgrade \
   && apk --purge -v del py-pip \
   && rm -rf /var/cache/apk/* \
