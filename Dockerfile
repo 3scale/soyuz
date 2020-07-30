@@ -15,7 +15,7 @@ RUN apk add --update \
   && rm -rf /var/cache/apk/* \
   && rm -rf $HOME/.cache
 
-RUN go get -u github.com/raelga/liche
+RUN go get -u github.com/dmitry-at-hyla/liche
 
 ENV BIN_3SCALE /opt/3scale/bin
 
