@@ -11,13 +11,13 @@ help:
 		| awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' \
 		| egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | sort
 
-release-build: build push-$(CI_TAG)
+build-all-release: build push-$(CI_TAG)
 
-release-push: push push-$(CI_TAG)
+push-all-release: push push-$(CI_TAG)
 
-latest-build: build-latest build-$(CI_TAG)-latest
+build-all-latest: build-latest build-$(CI_TAG)-latest
 
-latest-push: push-latest push-$(CI_TAG)-latest
+push-all-latest: push-latest push-$(CI_TAG)-latest
 
 build-all: build build-ci
 

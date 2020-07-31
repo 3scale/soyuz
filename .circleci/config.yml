@@ -35,13 +35,13 @@ jobs:
     machine: true
     steps:
     - checkout
-    - run: make latest-build
+    - run: make build-all-latest
     - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-    - run: make latest-push
+    - run: make push-all-latest
   build-n-push-release:
     machine: true
     steps:
     - checkout
-    - run: TAG=${CIRCLE_TAG:-master} make release-build
+    - run: TAG=${CIRCLE_TAG:-master} make build-all-release
     - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-    - run: TAG=${CIRCLE_TAG:-master} make release-push
+    - run: TAG=${CIRCLE_TAG:-master} make push-all-release
