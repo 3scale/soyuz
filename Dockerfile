@@ -1,4 +1,7 @@
-FROM alpine:3.7
+FROM hashicorp/terraform:0.12.29 as terraform
+
+
+FROM debian:stable-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
@@ -12,6 +15,7 @@ RUN apt-get update \
   && apt-get autoremove -y --purge \
   && rm -rf /var/lib/apt/lists/*
 
+COPY --from=terraform /bin/terraform /usr/bin
 
 RUN apk add --update \
   git openssh-client \
