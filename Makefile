@@ -19,6 +19,8 @@ latest-build: build-latest build-$(CI_TAG)-latest
 
 latest-push: push-latest push-$(CI_TAG)-latest
 
+build-all: build build-ci
+
 build:
 	docker build -t $(IMAGE):$(TAG) -f Dockerfile .
 
