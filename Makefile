@@ -1,7 +1,7 @@
 
 .PHONY: help
 
-TAG	?= 0.0.2
+CI_TAG ?= ci
 HUB	?= quay.io/3scale
 IMAGE	?= quay.io/3scale/soyuz
 
@@ -20,4 +20,16 @@ build-latest: build
 	docker tag $(IMAGE):$(TAG) $(IMAGE):latest
 
 push-latest: build-latest
+	docker push $(IMAGE):$(TAG)
+
+build-$(CI_TAG):
+	docker build -t $(IMAGE):$(TAG)-$(CI_TAG) -f Dockerfile-$(CI_TAG) .
+
+push-$(CI_TAG):
+	docker push $(IMAGE):$(TAG)-$(CI_TAG)
+
+build-$(CI_TAG)-latest: build
+	docker tag $(IMAGE):$(TAG)-$(CI_TAG) $(IMAGE):latest
+
+push-$(CI_TAG)-latest: build-latest
 	docker push $(IMAGE):$(TAG)
