@@ -25,22 +25,22 @@ workflows:
             ignore: /.*/
 
 jobs:
- build-all:
-   machine: true
-   steps:
-     - checkout
-     - run: make build-all
- build-n-push-latest:
-   machine: true
-   steps:
-     - checkout
-     - run: make latest-build
-     - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-     - run: make latest-push
- build-n-push-release:
-   machine: true
-   steps:
-     - checkout
-     - run: make release-build
-     - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-     - run: make release-push
+  build-all:
+    machine: true
+    steps:
+    - checkout
+    - run: make build-all
+  build-n-push-latest:
+    machine: true
+    steps:
+    - checkout
+    - run: make latest-build
+    - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+    - run: make latest-push
+  build-n-push-release:
+    machine: true
+    steps:
+    - checkout
+    - run: make release-build
+    - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+    - run: make release-push
