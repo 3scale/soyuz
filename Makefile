@@ -31,16 +31,16 @@ build-latest: build
 	docker tag $(IMAGE):$(TAG) $(IMAGE):latest
 
 push-latest: build-latest
-	docker push $(IMAGE):$(TAG)
+	docker push $(IMAGE):latest
 
 build-$(CI_TAG):
 	docker build -t $(IMAGE):$(TAG)-$(CI_TAG) -f Dockerfile-$(CI_TAG) .
 
-push-$(CI_TAG):
+push-$(CI_TAG): build-$(CI_TAG)
 	docker push $(IMAGE):$(TAG)-$(CI_TAG)
 
-build-$(CI_TAG)-latest: build
-	docker tag $(IMAGE):$(TAG)-$(CI_TAG) $(IMAGE):latest
+build-$(CI_TAG)-latest: build-$(CI_TAG)
+	docker tag $(IMAGE):$(TAG)-$(CI_TAG) $(IMAGE):latest-$(CI_TAG)
 
-push-$(CI_TAG)-latest: build-latest
-	docker push $(IMAGE):$(TAG)
+push-$(CI_TAG)-latest: build-$(CI_TAG)-latest
+	docker push $(IMAGE):latest-$(CI_TAG)
