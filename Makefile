@@ -11,7 +11,7 @@ help:
 		| awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' \
 		| egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | sort
 
-build-all-release: build push-$(CI_TAG)
+build-all-release: build build-$(CI_TAG)
 
 push-all-release: push push-$(CI_TAG)
 
