@@ -1,5 +1,9 @@
 FROM hashicorp/terraform:0.12.29 as terraform
-FROM golang:1.14.6-buster as go
+
+FROM golang:1.14.6-alpine as go
+
+# install git, required by `go get`
+RUN apk add --update git
 
 RUN go get -u github.com/dmitry-at-hyla/liche
 
