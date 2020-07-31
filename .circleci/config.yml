@@ -6,7 +6,7 @@ workflows:
         filters:
           branches:
             ignore:
-              - master
+              - main
   latest:
     jobs:
     - build-n-push-latest:
@@ -14,7 +14,7 @@ workflows:
         filters:
           branches:
             only:
-              - master
+              - main
   release:
     jobs:
     - build-n-push-release:
@@ -42,6 +42,6 @@ jobs:
     machine: true
     steps:
     - checkout
-    - run: TAG=${CIRCLE_TAG:-master} make build-all-release
+    - run: TAG=${CIRCLE_TAG:-main} make build-all-release
     - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-    - run: TAG=${CIRCLE_TAG:-master} make push-all-release
+    - run: TAG=${CIRCLE_TAG:-main} make push-all-release
