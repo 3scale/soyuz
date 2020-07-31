@@ -1,6 +1,17 @@
 FROM alpine:3.7
 
-ENV AWSCLI_VERSION 1.18.4
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update \
+  &&  apt-get install -y --no-install-recommends \
+  git make openssh-client \
+  default-mysql-client \
+  python3-minimal\
+  awscli \
+  ruby \
+  && apt-get clean autoclean \
+  && apt-get autoremove -y --purge \
+  && rm -rf /var/lib/apt/lists/*
+
 
 RUN apk add --update \
   git openssh-client \
