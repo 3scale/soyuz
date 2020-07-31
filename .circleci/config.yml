@@ -18,6 +18,7 @@ workflows:
   release:
     jobs:
     - build-n-push-release:
+        context: org-global
         filters:
           tags:
             only: /^v.*/
