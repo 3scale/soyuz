@@ -11,9 +11,13 @@ help:
 		| awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' \
 		| egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | sort
 
-build-all: build build-latest build-$(CI_TAG) build-$(CI_TAG)-latest
+release-build: build push-$(CI_TAG)
 
-push-all: push push-latest push-$(CI_TAG) push-$(CI_TAG)-latest
+release-push: push push-$(CI_TAG)
+
+latest-build: build-latest build-$(CI_TAG)-latest
+
+latest-push: push-latest push-$(CI_TAG)-latest
 
 build:
 	docker build -t $(IMAGE):$(TAG) -f Dockerfile .
