@@ -15,6 +15,14 @@ workflows:
           branches:
             only:
               - master
+  release:
+    jobs:
+    - build-n-push-release:
+        filters:
+          tags:
+            only: /^v.*/
+          branches:
+            ignore: /.*/
 
 jobs:
  build-all:
@@ -29,3 +37,10 @@ jobs:
      - run: make latest-build
      - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
      - run: make latest-push
+ build-n-push-release:
+   machine: true
+   steps:
+     - checkout
+     - run: make release-build
+     - run: docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+     - run: make release-push
