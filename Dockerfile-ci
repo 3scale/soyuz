@@ -5,7 +5,7 @@ FROM golang:1.14.6-alpine as go
 # install git, required by `go get`
 RUN apk add --update git
 
-RUN go get -u github.com/dmitry-at-hyla/liche
+RUN GO111MODULE=on go get github.com/raviqqe/liche
 
 FROM alpine:3.7
 

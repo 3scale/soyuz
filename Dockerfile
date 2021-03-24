@@ -2,7 +2,7 @@ FROM hashicorp/terraform:0.12.29 as terraform
 
 FROM golang:1.14.6-buster as go
 
-RUN go get -u github.com/dmitry-at-hyla/liche
+RUN GO111MODULE=on go get github.com/raviqqe/liche
 
 FROM debian:stable-slim
 
