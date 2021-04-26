@@ -1,4 +1,5 @@
 FROM hashicorp/terraform:0.12.29 as terraform
+FROM hashicorp/vault:1.7.1 as vault
 
 FROM golang:1.14.6-buster as go
 
@@ -18,6 +19,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY --from=terraform /bin/terraform /usr/bin
+COPY --from=vault /bin/vault /usr/bin
 
 ENV GO_BIN /go/bin
 ENV PATH "$GO_BIN:$PATH"
